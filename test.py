@@ -1,33 +1,10 @@
-import tkinter as tk
+from itertools import product
+import random
 
+width = 10
+mines = 20
+locations = list(product(range(width), repeat=2))
+mine_locs = random.sample(locations,k=mines)
 
-border_effects = {
-
-    "flat": tk.FLAT,
-
-    "sunken": tk.SUNKEN,
-
-    "raised": tk.RAISED,
-
-    "groove": tk.GROOVE,
-
-    "ridge": tk.RIDGE,
-
-}
-
-
-window = tk.Tk()
-
-
-for relief_name, relief in border_effects.items():
-
-    frame = tk.Frame(master=window, relief=relief, borderwidth=5)
-
-    frame.pack(side=tk.LEFT)
-
-    label = tk.Label(master=frame, text=relief_name)
-
-    label.pack()
-
-
-window.mainloop()
+print(mine_locs)
+print(set(mine_locs))
