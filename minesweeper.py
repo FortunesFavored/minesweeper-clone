@@ -14,6 +14,29 @@ class Game:
         'unknown': 3,
     }
 
+    font_values = {
+        "value0": {
+            'background':'black',
+            'foreground':'grey',
+        },
+        "value1": {
+            'background':'black',
+            'foreground':'red',
+        },
+        "value2": {
+            'background':'black',
+            'foreground':'green',
+        },
+        "value3": {
+            'background':'grey',
+            'foreground':'pink',
+        },
+        "value4": {
+            'background':'blue',
+            'foreground':'purple',
+        },
+    }
+
     def __init__(self, game_window):
         self.game_window = game_window
         # self.game_window.geometry("400x400")
@@ -79,7 +102,11 @@ class Game:
     def donothing(self,x,y, width, height):
         tile_id = f"ID-{x}-{y}"
         print(tile_id)
-        self.space = tk.Button(text=f'{self.tiles[tile_id]["value"]}', relief=SUNKEN, width=1, height=1)
+        try:
+            self.space = tk.Button(text=f'{self.tiles[tile_id]["value"]}',foreground=Game.font_values[f'value{self.tiles[tile_id]["value"]}']['foreground'], relief=SUNKEN, width=1, height=1)
+        except:
+            self.space = tk.Button(text=f'{self.tiles[tile_id]["value"]}', relief=SUNKEN, width=1, height=1)
+
         self.space.grid(row=y,column=x)
         if self.tiles[tile_id]["value"] == 0 and self.tiles[tile_id]["pressed"] == False:
             self.tiles[tile_id]["pressed"] = True
