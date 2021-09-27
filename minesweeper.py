@@ -44,19 +44,105 @@ class Game:
         self.mines = mines
         for x in range(width):
             for y in range(height):
-                if y == 0: top_tile = None
-                else: top_tile = f'ID{x}{y-1}'
-                if y == (height-1): bottom_tile = None
-                else: bottom_tile = f'ID{x}{y+1}'
-                if x == 0: left_tile = None
-                else: left_tile = f'ID{x-1}{y}'
-                if x == (width-1): right_tile = None
-                else: right_tile = f'ID{x+1}{y}'
+                if y == 0 and x == 0:
+                    NW_tile = None
+                    N_tile = None
+                    NE_tile = None
+                    E_tile = f'ID{x+1}{y}'
+                    SE_tile = f'ID{x+1}{y+1}'
+                    S_tile = f'ID{x}{y+1}'
+                    SW_tile = f'ID{x-1}{y+1}'
+                    W_tile = f'ID{x-1}{y}'
+                if y == 0 and x == 0:
+                    NW_tile = None
+                    N_tile = None
+                    NE_tile = None
+                    E_tile = f'ID{x+1}{y}'
+                    SE_tile = f'ID{x+1}{y+1}'
+                    S_tile = f'ID{x}{y+1}'
+                    SW_tile = f'ID{x-1}{y+1}'
+                    W_tile = f'ID{x-1}{y}'
+                if y == 0 and x == 0:
+                    NW_tile = None
+                    N_tile = None
+                    NE_tile = None
+                    E_tile = f'ID{x+1}{y}'
+                    SE_tile = f'ID{x+1}{y+1}'
+                    S_tile = f'ID{x}{y+1}'
+                    SW_tile = f'ID{x-1}{y+1}'
+                    W_tile = f'ID{x-1}{y}'
+                if y == 0 and x == 0:
+                    NW_tile = None
+                    N_tile = None
+                    NE_tile = None
+                    E_tile = f'ID{x+1}{y}'
+                    SE_tile = f'ID{x+1}{y+1}'
+                    S_tile = f'ID{x}{y+1}'
+                    SW_tile = f'ID{x-1}{y+1}'
+                    W_tile = f'ID{x-1}{y}'
+
+                if y == 0 and (x != 0 or x != (width-1)):
+                    NW_tile = None
+                    N_tile = None
+                    NE_tile = None
+                    E_tile = f'ID{x+1}{y}'
+                    SE_tile = f'ID{x+1}{y+1}'
+                    S_tile = f'ID{x}{y+1}'
+                    SW_tile = f'ID{x-1}{y+1}'
+                    W_tile = f'ID{x-1}{y}'
+                if y == (height-1) and (x != 0 or x != (width-1)):
+                    NW_tile = f'ID{x-1}{y-1}'
+                    N_tile = f'ID{x}{y-1}'
+                    NE_tile = f'ID{x+1}{y-1}'
+                    E_tile = f'ID{x+1}{y}'
+                    SE_tile = None
+                    S_tile = None
+                    SW_tile = None
+                    W_tile = f'ID{x-1}{y}'
+                if x == 0 and (y != 0 or y != (width-1)):
+                    NW_tile = None
+                    N_tile = f'ID{x}{y-1}'
+                    NE_tile = f'ID{x+1}{y-1}'
+                    E_tile = f'ID{x+1}{y}'
+                    SE_tile = f'ID{x+1}{y+1}'
+                    S_tile = f'ID{x}{y+1}'
+                    SW_tile = None
+                    W_tile = None
+                if x == (width-1) and (y != 0 or y != (height-1)):
+                    NW_tile = f'ID{x-1}{y-1}'
+                    N_tile = f'ID{x}{y-1}'
+                    NE_tile = None
+                    E_tile = None
+                    SE_tile = None
+                    S_tile = f'ID{x}{y+1}'
+                    SW_tile = f'ID{x-1}{y+1}'
+                    W_tile = f'ID{x-1}{y}'
+
+
+                if x < 1: W_tile, NW_tile, SW_tile = None, None, None
+                else: W_tile = f'ID{x-1}{y}'
+
+                if y > (height-2): S_tile, SW_tile, SE_tile = None, None, None
+                else: S_tile = f'ID{x}{y+1}'
+
+                if x > (width-2): E_tile = None
+                else: E_tile = f'ID{x+1}{y}'
+
+                if (y > 0 and x > 0) and (y < (height-1) and x < (width-1)):
+                    NE_tile = 
+                    SE_tile = 
+                    SW_tile = 
+                    NW_tile = 
+
                 self.tiles[f'ID{x}{y}']={
-                    "top_tile": top_tile,
-                    "right_tile": right_tile,
-                    "bottom_tile": bottom_tile,
-                    "left_tile": left_tile,
+                    "N_tile": N_tile,
+                    "NE_tile": NE_tile,
+                    "E_tile": E_tile,
+                    "SE_tile": SE_tile,
+                    "S_tile": S_tile,
+                    "SW_tile": SW_tile,
+                    "W_tile": W_tile,
+                    "NW_tile": NW_tile,
                     "mine_location": False
                 }
                 self.mine_field = tk.Frame(
@@ -71,6 +157,7 @@ class Game:
 
     def donothing(self,x,y):
         print(f'Tile ID is {x},{y}')
+        print(self.tiles[f'ID{x}{y}'])
         ...
 
 def main():
